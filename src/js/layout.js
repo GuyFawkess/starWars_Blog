@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-
+import ItemDetail from "./views/ItemDetail";
+import AllItems from "./views/allItems";
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
 import injectContext from "./store/appContext";
+import Card from "./component/card";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -19,16 +18,18 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<ScrollToTop>
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/demo" element={<Demo />} />
-						<Route path="/single/:theid" element={<Single />} />
+						<Route path="/details/characters/:theid" element={<ItemDetail category="characters" />} />
+						<Route path="/details/planets/:theid" element={<ItemDetail category="planets" />} />
+						<Route path="/details/starships/:theid" element={<ItemDetail category="starships" />} />
+						<Route path="/all/characters/" element={<AllItems category="characters" />} />
+						<Route path="/all/planets/" element={<AllItems category="planets" />} />
+						<Route path="/all/starships/" element={<AllItems category="starships" />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
-				</ScrollToTop>
 			</BrowserRouter>
 		</div>
 	);
